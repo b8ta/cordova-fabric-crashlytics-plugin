@@ -98,6 +98,18 @@
     [self resultOK:command];
 }
 
+- (void)recordError:(CDVInvokedUrlCommand*)command
+{
+    NSString *domain = command.arguments[0];
+    int code = [command.arguments[1] intValue];
+    NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: command.arguments[2] };
+
+    NSError *error = [NSError errorWithDomain: domain code: code userInfo: userInfo];
+    [self.crashlytics recordError:error];
+
+    [self resultOK:command];
+}
+
 - (void)resultOK:(CDVInvokedUrlCommand *)command {
     CDVPluginResult* res = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:res callbackId:command.callbackId];

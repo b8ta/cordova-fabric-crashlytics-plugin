@@ -25,6 +25,7 @@ Plugins provides a `navigator.crashlytics` object with following methods :
 - setUserIdentifier(userId)
 - setUserName(userName)
 - simulateCrash(): Simulates a crash
+- recordError(domain, code, message): Logs an NSError (iOS only)
 
 
 ### Supported platforms and current versions

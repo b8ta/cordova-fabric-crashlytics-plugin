@@ -102,6 +102,12 @@ public class CrashlyticsPlugin extends CordovaPlugin {
                 String message = args.length() == 0 ? "This is a crash":args.getString(0);
                 throw new RuntimeException(message);
             }
+        },
+        recordError(3){
+            @Override
+            public void call(JSONArray args) throws JSONException {
+                Crashlytics.recordError(args.getString(0), args.getInt(1), args.getString(2));
+            }
         };
 
         int minExpectedArgsLength;
